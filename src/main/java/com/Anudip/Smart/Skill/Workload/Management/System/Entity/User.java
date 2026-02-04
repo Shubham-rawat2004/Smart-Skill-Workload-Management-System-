@@ -11,19 +11,24 @@ import java.util.List;
 @Table(name = "users")
 @Data
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
     @NotBlank
     private String name;
+
     @Email
+    @Column(unique = true)
     private String email;
 
-    private int availablityHours;
+    private int availabilityHours;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserSkill> skill;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserSkill> skills;
 }
+

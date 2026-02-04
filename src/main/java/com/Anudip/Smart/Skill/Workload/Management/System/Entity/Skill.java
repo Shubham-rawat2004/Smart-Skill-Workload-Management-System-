@@ -1,21 +1,21 @@
 package com.Anudip.Smart.Skill.Workload.Management.System.Entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
-@Table(name = "skill")
+@Entity
+@Table(name = "skills")
+@Data
 public class Skill {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long skill_id;
-
-    @NotNull
-    private String name;
+    private Long id;
 
     @NotBlank
+    private String name;
+
     private String description;
 }

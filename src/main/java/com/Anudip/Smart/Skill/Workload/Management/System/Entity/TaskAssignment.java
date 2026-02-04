@@ -1,4 +1,5 @@
 package com.Anudip.Smart.Skill.Workload.Management.System.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,13 +14,14 @@ public class TaskAssignment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "task", nullable = false)
+    @JoinColumn(name = "task_id", nullable = false)
+    @JsonIgnore
     private Task task;
 
+
     @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     private LocalDate assignedDate;
-
 }

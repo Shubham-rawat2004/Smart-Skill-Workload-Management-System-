@@ -7,30 +7,28 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "tasks")
 @Data
-@Table(name = "task")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String title;
-
     private String description;
 
     private int requiredEffortHours;
 
-    private String priority;
-    private LocalDateTime deadline;
+    @Enumerated(EnumType.STRING)
+    private TaskPriority priority;
 
+    private LocalDateTime deadline;
     private String projectName;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
-
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskSkill> requiredSkills;
-
 }
